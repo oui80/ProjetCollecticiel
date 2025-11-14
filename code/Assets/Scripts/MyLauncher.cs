@@ -12,6 +12,7 @@ public class MyLauncher : MonoBehaviourPunCallbacks
 	public Button btn;
 	public TextMeshProUGUI  feedbackText;
 	public byte maxPlayersPerRoom = 4;
+	private string roomName = "MyRoom";
 
 	bool isConnecting;
 	string gameVersion = "1";
@@ -31,7 +32,7 @@ public class MyLauncher : MonoBehaviourPunCallbacks
 		if (PhotonNetwork.IsConnected)
 		{
 			LogFeedback("Joining Room...");
-			PhotonNetwork.JoinRandomRoom();
+			PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions { MaxPlayers = maxPlayersPerRoom }, TypedLobby.Default);
 		}else{
 
 			LogFeedback("Connecting...");
