@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/MyRoom.unity
-    guid: 611d417776f890c489dc7c5d5430f747
   - enabled: 1
     path: Assets/Scenes/LauchScene.unity
     guid: 58c770166b2f7f246b3cdab1f1221450
@@ -23,12 +20,12 @@ EditorBuildSettings:
       for 2.unity
     guid: 764428c63577f4580af4ce54ca9f4b1b
   - enabled: 1
+    path: Assets/Scenes/MyRoom.unity
+    guid: 611d417776f890c489dc7c5d5430f747
+  - enabled: 1
     path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room
       for 3.unity
     guid: e07afcca5bf1a41f5bd28f498656b7b8
-  - enabled: 1
-    path: Assets/Scenes/MyRoom.unity
-    guid: 05068edd0b5dee940a371bae2e403996
   - enabled: 1
     path: Assets/Photon/PhotonUnityNetworking/Demos/PunBasics-Tutorial/Scenes/PunBasics-Room
       for 4.unity
