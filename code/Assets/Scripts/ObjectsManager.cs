@@ -15,6 +15,10 @@ public class DistributeInLine : MonoBehaviour
 
     void Start()
     {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+
+        
         for (int i = 0; i < prefabs.Length; i++)
         {
             // First set of objects
