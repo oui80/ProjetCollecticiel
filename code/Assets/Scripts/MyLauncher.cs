@@ -93,7 +93,7 @@ public class MyLauncher : MonoBehaviourPunCallbacks
 
 			// #Critical
 			// Load the Room Level. 
-			PhotonNetwork.LoadLevel("MyRoom");
+			PhotonNetwork.LoadLevel(roomName);
 
 		}
 	}
