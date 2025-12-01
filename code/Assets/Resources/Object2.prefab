@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -8722617987429413306}
   - component: {fileID: 1227707411549833700}
   - component: {fileID: 8663316833688550371}
+  - component: {fileID: -2569719494900714165}
   m_Layer: 0
   m_Name: Object2
   m_TagString: Untagged
@@ -168,7 +169,19 @@ MonoBehaviour:
       m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -2569719494900714165}
+        m_TargetAssemblyTypeName: PhotonOwnershipOnGrab, Assembly-CSharp
+        m_MethodName: OnGrabStarted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_LastSelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -357,7 +370,9 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 1227707411549833700}
+  - {fileID: 8663316833688550371}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -390,6 +405,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SmoothingDelay: 5
+--- !u!114 &-2569719494900714165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5008204756935703250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 979630d5a8100e549a418c578e0d84c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6279003270346059212
 GameObject:
   m_ObjectHideFlags: 0
