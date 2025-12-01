@@ -8,7 +8,7 @@ public class PhotonOwnershipOnGrab : MonoBehaviourPun
 
     private void Awake()
     {
-        cubeRenderer = GetComponent<Renderer>();
+        cubeRenderer = GetComponentInChildren<Renderer>();
         originalColor = cubeRenderer.material.color;
     }
 
