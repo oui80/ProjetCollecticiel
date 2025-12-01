@@ -9,7 +9,6 @@ using TMPro;
 
 public class MyLauncher : MonoBehaviourPunCallbacks
 {
-	public Button btn;
 	public TextMeshProUGUI  feedbackText;
 	public byte maxPlayersPerRoom = 4;
 	private string roomName = "MyRoom";
@@ -17,7 +16,11 @@ public class MyLauncher : MonoBehaviourPunCallbacks
 	bool isConnecting;
 	string gameVersion = "1";
 
-	void Awake()
+    private void Start()
+    {
+        this.Connect();
+    }
+    void Awake()
 	{
 		PhotonNetwork.AutomaticallySyncScene = true;
 
@@ -26,8 +29,6 @@ public class MyLauncher : MonoBehaviourPunCallbacks
 	{
 		feedbackText.text = "";
 		isConnecting = true;
-
-		btn.interactable = false;
 		
 		if (PhotonNetwork.IsConnected)
 		{
@@ -78,7 +79,6 @@ public class MyLauncher : MonoBehaviourPunCallbacks
 		Debug.LogError("PUN Basics Tutorial/Launcher:Disconnected");
 
 		isConnecting = false;
-		btn.interactable = true;
 	}	
 
 	public override void OnJoinedRoom()
