@@ -41,6 +41,9 @@ MonoBehaviour:
   - RespawnSpaceship
   - ChangeCubeColor
   - RestoreOriginalColor
+  - ApplyColor_All
+  - Master_RequestSetColor
+  - Master_RequestColor
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
