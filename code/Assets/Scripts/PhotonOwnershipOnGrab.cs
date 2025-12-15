@@ -84,7 +84,7 @@ public class PhotonOwnershipOnGrab : MonoBehaviourPun
     // Appel? par ton ObjectManipulator
     public void OnGrabStarted()
     {
-        // Master : change couleur + désactive sa manipulation
+        // Master : change couleur + dÃ©sactive sa manipulation
         if (PhotonNetwork.IsMasterClient)
         {
             photonView.RPC("ChangeCubeColor", RpcTarget.AllBuffered);
@@ -96,7 +96,7 @@ public class PhotonOwnershipOnGrab : MonoBehaviourPun
             if (manipulator is Behaviour behaviour)
                 StartCoroutine(DisableNextFrame(behaviour));
 
-            return; // IMPORTANT : le Master s'arrête ici
+            return; // IMPORTANT : le Master s'arrÃªte ici
         }
 
         // Client : demande ownership pour pouvoir bouger
