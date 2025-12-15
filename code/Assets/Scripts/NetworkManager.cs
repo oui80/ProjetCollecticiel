@@ -98,6 +98,18 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         LogFeedback("Joined room: " + roomName);
         Debug.Log("Joined room: " + roomName);
 
+        if (PhotonNetwork.IsMasterClient)
+        {
+            LogFeedback("You are the Master Client");
+            Debug.Log("You are the Master Client");
+        }
+        else
+        {
+            LogFeedback("You are a regular client");
+            Debug.Log("You are a regular client");
+            return;
+        }
+
         // Only spawn shapes if they haven't been spawned yet
         if (GameObject.FindWithTag("NetworkedCube") == null)
         {
