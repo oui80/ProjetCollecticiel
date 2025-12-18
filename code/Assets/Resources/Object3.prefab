@@ -170,7 +170,7 @@ MonoBehaviour:
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: -7612440311593978284}
         m_TargetAssemblyTypeName: PhotonOwnershipOnGrab, Assembly-CSharp
         m_MethodName: OnGrabStarted
         m_Mode: 1
@@ -380,7 +380,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 8625022609015921020}
