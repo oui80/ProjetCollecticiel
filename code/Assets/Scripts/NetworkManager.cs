@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using System.Threading;
 
 
 public class NetworkManager : MonoBehaviourPunCallbacks
@@ -43,6 +44,30 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         if (qrReader.init)
         {
             qrCodeObject.SetActive(false);
+            if (GameObject.FindWithTag("NetworkedCube") == null)
+            {
+
+                // Make sure your prefab is named exactly "NetworkedCube"
+                // and lives in a Resources folder.
+                GameObject cube = PhotonNetwork.Instantiate(
+                    "NetworkedCube",
+                    new Vector3(0, 200f, 200f),  // initial position in front of user
+                    Quaternion.identity
+                );
+
+                for (int i = 0; i < prefabs.Length; i++)
+                {
+                    // First set of objects
+                    Vector3 newPosition = table.position + new Vector3(-table.localScale.x / 2, 0.4f, table.localScale.z / 2) + new Vector3(i * spacing, 0, 0);
+                    GameObject newObject = PhotonNetwork.Instantiate(prefabs[i].name, newPosition, Quaternion.identity);
+                    objects.Add(newObject);
+                    // Second set of objects
+                    Vector3 newPosition2 = table.position + new Vector3(-table.localScale.x / 2, 0.4f, -table.localScale.z / 2) + new Vector3(i * spacing, 0, 0);
+                    GameObject newObject2 = PhotonNetwork.Instantiate(prefabs[i].name, newPosition2, Quaternion.Euler(0, 90, 0));
+                    objects.Add(newObject2);
+
+                }
+            }
         }
 
     }
@@ -109,31 +134,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             Debug.Log("You are a regular client");
             return;
         }
-
+        
         // Only spawn shapes if they haven't been spawned yet
-        if (GameObject.FindWithTag("NetworkedCube") == null)
-        {
-            // Make sure your prefab is named exactly "NetworkedCube"
-            // and lives in a Resources folder.
-            GameObject cube = PhotonNetwork.Instantiate(
-                "NetworkedCube",
-                new Vector3(0, 0, 2f),  // initial position in front of user
-                Quaternion.identity
-            );
 
-            for (int i = 0; i < prefabs.Length; i++)
-            {
-                // First set of objects
-                Vector3 newPosition = table.position + new Vector3(-table.localScale.x / 2, 0.4f, table.localScale.z / 2) + new Vector3(i * spacing, 0, 0);
-                GameObject newObject = PhotonNetwork.Instantiate(prefabs[i].name, newPosition, Quaternion.identity);
-                objects.Add(newObject);
-                // Second set of objects
-                Vector3 newPosition2 = table.position + new Vector3(-table.localScale.x / 2, 0.4f, -table.localScale.z / 2) + new Vector3(i * spacing, 0, 0);
-                GameObject newObject2 = PhotonNetwork.Instantiate(prefabs[i].name, newPosition2, Quaternion.Euler(0, 90, 0));
-                objects.Add(newObject2);
-
-            }
-        }
         StartCoroutine(ClearFeedbackAfterDelay(1f));
     }
 
