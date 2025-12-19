@@ -429,6 +429,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979630d5a8100e549a418c578e0d84c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duplicatePrefab: {fileID: 276406586985154960}
+  duplicateColor: {r: 0, g: 1, b: 0, a: 1}
+  duplicatePrefabName: Object3
+  isDuplicate: 0
 --- !u!1 &2546631769988019759
 GameObject:
   m_ObjectHideFlags: 0

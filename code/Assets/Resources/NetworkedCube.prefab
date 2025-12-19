@@ -411,3 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979630d5a8100e549a418c578e0d84c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duplicatePrefab: {fileID: 0}
+  duplicateColor: {r: 0, g: 1, b: 0, a: 1}
+  duplicatePrefabName: 
+  isDuplicate: 0

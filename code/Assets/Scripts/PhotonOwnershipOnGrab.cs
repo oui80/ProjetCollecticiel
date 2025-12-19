@@ -7,6 +7,11 @@ public class PhotonOwnershipOnGrab : MonoBehaviourPun
 {
     private Renderer[] renderers;
     private Color[][] originalColors;
+    [SerializeField] private GameObject duplicatePrefab;
+    [SerializeField] private Color duplicateColor = Color.green;
+    [SerializeField] private string duplicatePrefabName;
+    [SerializeField] private bool isDuplicate = false;
+
 
 
     private void Awake()
@@ -82,30 +87,97 @@ public class PhotonOwnershipOnGrab : MonoBehaviourPun
     }
 
     // Appel? par ton ObjectManipulator
-    public void OnGrabStarted()
+   public void OnGrabStarted()
+{
+    if (isDuplicate)
     {
-        // Master : change couleur + désactive sa manipulation
-        if (PhotonNetwork.IsMasterClient)
-        {
-            photonView.RPC("ChangeCubeColor", RpcTarget.AllBuffered);
-
-            Component manipulator =
-                gameObject.GetComponent("MixedReality.Toolkit.SpatialManipulation.ObjectManipulator") ??
-                gameObject.GetComponent("Microsoft.MixedReality.Toolkit.UI.ObjectManipulator");
-
-            if (manipulator is Behaviour behaviour)
-                StartCoroutine(DisableNextFrame(behaviour));
-
-            return; // IMPORTANT : le Master s'arrête ici
+        if (!PhotonNetwork.IsMasterClient){
+             DisableManipulator();
         }
+        return;
+    }
+    if (PhotonNetwork.IsMasterClient)
+    {
+        // 1. Original -> rouge + plus manipulable
+        photonView.RPC(nameof(ChangeCubeColor), RpcTarget.AllBuffered);
 
-        // Client : demande ownership pour pouvoir bouger
-        if (!photonView.IsMine)
+        DisableManipulator();
+
+        // 2. Spawn de la copie
+        SpawnDuplicate();
+
+        return;
+    }
+
+    // Client normal : demande ownership
+    if (!photonView.IsMine)
+    {
+       
+        photonView.RequestOwnership();
+    }
+}
+
+    private void SpawnDuplicate()
+    {
+        Vector3 pos = transform.position + Vector3.right * 0.2f;
+        Quaternion rot = transform.rotation;
+
+        GameObject clone = PhotonNetwork.Instantiate(
+            duplicatePrefabName,
+            pos,
+            rot
+        );
+
+        PhotonView cloneView = clone.GetComponent<PhotonView>();
+
+        // Sécurité : le Master garde l'ownership
+       // cloneView.TransferOwnership(PhotonNetwork.LocalPlayer);
+
+        // Change la couleur de la copie
+        cloneView.RPC(nameof(SetDuplicateColor), RpcTarget.AllBuffered);
+        clone.GetComponent<PhotonOwnershipOnGrab>()
+         .SetAsDuplicate();
+    }
+
+    [PunRPC]
+    private void SetDuplicateColor()
+    {
+        if (renderers == null) return;
+
+        foreach (var r in renderers)
         {
-            photonView.RequestOwnership();
-            Debug.Log("Requested ownership of cube");
+            foreach (var mat in r.materials)
+            {
+                mat.color = duplicateColor;
+            }
         }
     }
+    
+   public void SetAsDuplicate()
+    {
+        photonView.RPC(nameof(RPC_SetAsDuplicate), RpcTarget.AllBuffered);
+    }
+
+    [PunRPC]
+    private void RPC_SetAsDuplicate()
+    {
+        isDuplicate = true;
+        SetDuplicateColor();
+    }
+
+
+
+    private void DisableManipulator()
+    {
+        Component manipulator =
+            GetComponent("MixedReality.Toolkit.SpatialManipulation.ObjectManipulator") ??
+            GetComponent("Microsoft.MixedReality.Toolkit.UI.ObjectManipulator");
+
+        if (manipulator is Behaviour behaviour)
+            StartCoroutine(DisableNextFrame(behaviour));
+    }
+
+
 
 
     public void OnGrabEnded()

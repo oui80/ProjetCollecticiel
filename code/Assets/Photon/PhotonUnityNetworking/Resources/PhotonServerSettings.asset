@@ -44,6 +44,8 @@ MonoBehaviour:
   - ApplyColor_All
   - Master_RequestSetColor
   - Master_RequestColor
+  - SetDuplicateColor
+  - RPC_SetAsDuplicate
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
