@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 7600454030856200957}
   - component: {fileID: 8426319818101335971}
   - component: {fileID: 4605390530440629896}
+  - component: {fileID: -6691995391413442649}
   m_Layer: 0
   m_Name: Object4
   m_TagString: Untagged
@@ -271,10 +272,34 @@ MonoBehaviour:
       m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -6691995391413442649}
+        m_TargetAssemblyTypeName: PhotonOwnershipOnGrab, Assembly-CSharp
+        m_MethodName: OnGrabStarted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_LastSelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -5478897382178074675, guid: 94fccc9dbaf47334db2e94641aad7a58, type: 3}
+        m_TargetAssemblyTypeName: PhotonOwnershipOnGrab, Assembly-CSharp
+        m_MethodName: OnGrabEnded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -458,9 +483,11 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 8426319818101335971}
+  - {fileID: 4605390530440629896}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -493,3 +520,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SmoothingDelay: 5
+--- !u!114 &-6691995391413442649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4816523121194869698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 979630d5a8100e549a418c578e0d84c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duplicatePrefab: {fileID: 4816523121194869698}
+  duplicateColor: {r: 0, g: 1, b: 0, a: 1}
+  duplicatePrefabName: Object4
+  isDuplicate: 0
